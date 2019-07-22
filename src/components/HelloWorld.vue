@@ -147,6 +147,7 @@ export default {
     }
 
     .keyboard{
+        box-shadow: 10px 15px 0px #302e2e;
         margin-top: 200px;
         margin-left: 250px;
         display: flex;
@@ -174,6 +175,7 @@ export default {
         max-width: 165px;
     }
     .top-1 >div{
+        box-shadow: 3px 3px 0px #302e2e;
         margin-left: 12px;
         padding-left: 20px;
         padding-right: 20px;
@@ -189,6 +191,7 @@ export default {
         
     }
     .top-2 >div{
+        box-shadow: 3px 3px 0px #302e2e;
         margin-right: 5px;
         padding-left: 20px;
         padding-right: 20px; 
@@ -203,6 +206,7 @@ export default {
         max-width: 310px; 
     }
     .top-3 >div{
+        box-shadow: 3px 3px 0px #302e2e;
         margin-right: 5px;
         padding-left: 20px;
         padding-right: 20px;
@@ -215,6 +219,7 @@ export default {
         max-width: 323px; 
     }
     .top-4 >div{
+        box-shadow: 3px 3px 0px #302e2e;
         margin-right: 5px;
         padding-left: 15px;
         padding-right: 15px;
@@ -233,6 +238,7 @@ export default {
         justify-content: flex-start;
     }
     .top-5 >div{
+        box-shadow: 3px 3px 0px #302e2e;
         margin-right: 5px;
         padding-left: 20px;
         padding-right: 15px;
@@ -259,6 +265,7 @@ export default {
         display: flex;
     }
     .bottom .bottom-1 >div{
+        box-shadow: 3px 3px 0px #302e2e;
         flex:1;
         max-width: 63.5px;
         margin-right:5px;
@@ -280,6 +287,7 @@ export default {
         display: flex;
     }
     .bottom .bottom-2 >div{
+        box-shadow: 3px 3px 0px #302e2e;
         flex:1;
         max-width: 63.5px;
         margin-right:5px;
@@ -305,6 +313,7 @@ export default {
         justify-content: flex-start
     }
     .bottom .bottom-3 >div{
+        box-shadow: 3px 3px 0px #302e2e;
         flex:1;
         max-width: 63.5px;
         margin-right:5px;
@@ -320,6 +329,7 @@ export default {
         justify-content: flex-start
     }
     .bottom .bottom-4 >div{
+        box-shadow: 3px 3px 0px #302e2e;
         flex:1;
         max-width: 63.5px;
         margin-right:5px;
@@ -338,6 +348,7 @@ export default {
         justify-content: flex-start
     }
     .bottom .bottom-5 >div{
+        box-shadow: 3px 3px 0px #302e2e;
         flex:1;
         max-width: 63.5px;
         margin-right:5px;
