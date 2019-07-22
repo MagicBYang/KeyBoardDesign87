@@ -147,7 +147,7 @@ export default {
     }
 
     .keyboard{
-        box-shadow: 10px 15px 0px #302e2e;
+        box-shadow: 10px 10px 0px #302e2e;
         margin-top: 200px;
         margin-left: 250px;
         display: flex;
