@@ -3,3 +3,5 @@
 
 命令行键入:npm run dev即可
 点击左上角色块选择颜色后点击键盘上色
+
+![image](https://github.com/ButBueatiful/dotvim/raw/master/screenshots/vim-screenshot.jpg)
