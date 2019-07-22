@@ -5,7 +5,7 @@
     <div class="keyboard" style="border:4px solid">
         <div class="top">
            <div class="top-1">
-               <div class="top-1-1 hasBorder" @click="handleClick($event)">Esc</div>
+               <div class="top-1-1 hasBorder" @click="handleClick($event)" @mouseover="handleOver($event)">Esc</div>
            </div>
            <div class="top-2">
                <div class="top-2-1 hasBorder" @click="handleClick($event)">F1</div>
@@ -26,9 +26,9 @@
                <div class="top-4-4 hasBorder" @click="handleClick($event)">F12</div>
            </div>
            <div class="top-5">
-            <div class="top-5-1 hasBorder" @click="handleClick($event)">PS</div>
-            <div class="top-5-2 hasBorder" @click="handleClick($event)">SL</div>
-            <div class="top-5-3 hasBorder" @click="handleClick($event)">PB</div>
+               <div class="top-5-1 hasBorder" @click="handleClick($event)">PS</div>
+               <div class="top-5-2 hasBorder" @click="handleClick($event)">SL</div>
+               <div class="top-5-3 hasBorder" @click="handleClick($event)">PB</div>
            </div>
         </div>
         <div class="bottom">
@@ -119,17 +119,32 @@
 </template>
 
 <script>
-import { constants } from 'fs';
 export default {
   name: 'HelloWorld',
   data () {
     return {
       color: '#FF6600',
+      keyBoardData:[{
+               
+      }]
     }
   },
   methods:{
       handleClick(e){
-          e.srcElement.style.backgroundColor = this.color
+          e.srcElement.style.cssText  = 'box-shadow: 0px 0px 0px #302e2e'
+          e.srcElement.style.backgroundColor = '#708090'
+          setTimeout(()=>{
+              e.srcElement.style.cssText  = '10px 10px 0px #302e2e'
+              e.srcElement.style.backgroundColor = this.color
+          },100)
+      },
+      handleOver(e){
+          e.srcElement.style.cssText  = 'box-shadow: 0px 0px 0px #302e2e'
+          e.srcElement.style.backgroundColor = '#708090'
+          setTimeout(()=>{
+              e.srcElement.style.cssText  = '10px 10px 0px #302e2e'
+              e.srcElement.style.backgroundColor = this.color
+          },100)
       }
   }
 }
@@ -139,7 +154,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     html,body{
-        background-color:lightskyblue
+        background-color:lightskyblue;
+        
     }
     
     .hasBorder{
@@ -147,6 +163,13 @@ export default {
     }
 
     .keyboard{
+        -webkit-user-select:none;
+
+        -moz-user-select:none;
+
+        -ms-user-select:none;
+
+        user-select:none;
         box-shadow: 10px 10px 0px #302e2e;
         margin-top: 200px;
         margin-left: 250px;
