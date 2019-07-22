@@ -185,7 +185,7 @@ export default {
         display: flex;
         justify-content: flex-start;
         max-width: 335px;
-        margin-left: 76px;
+        margin-left: 82px;
         
     }
     .top-2 >div{
