@@ -5,4 +5,5 @@
 点击左上角色块选择颜色后点击键盘上色
 
 请在宽度超过1700px 高度超过700px的设备上运行该程序
+未作适配性开发，请在最新Chrome浏览器运行
 ![image](https://github.com/MagicBYang/KeyBoardDesign87/blob/master/static/readmeImage/Example.png)
