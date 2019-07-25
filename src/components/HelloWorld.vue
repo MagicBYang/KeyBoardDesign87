@@ -48,7 +48,7 @@
        </div>
        <div class='functionBox'>
            <div>
-                <div style="font-family:微软雅黑;font-weight:bold;font-size:40px;">功能区</div>
+                <div style="font-family:微软雅黑;font-weight:bold;font-size:40px;" @click="leadingIn">功能区</div>
            </div>
            <div class='functionBox-function'>
                 <div>
@@ -81,11 +81,30 @@
                     <div style="backgroundColor:#ffffff;width:15px;height:15px;backgroundImage:url(../static/readmeImage/Example4.png)" @click="applyPlan('Chernobyl')"></div>
                 </div>
                 <div>
-                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">核辐射</div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">海滩</div>
                     <div>
-                        <div style="backgroundColor:#ffffff;width:15px;height:15px;backgroundImage:url(../static/readmeImage/Example2.png)" @click="applyPlan('Nuclear')"></div>
+                        <div style="backgroundColor:#ffffff;width:15px;height:15px;backgroundImage:url(../static/readmeImage/Example2.png)" @click="applyPlan('Beach')"></div>
                     </div>
                 </div>  
+           </div>
+       </div>
+       <div class='leadingOut'>
+           <div>
+                <div style="font-family:微软雅黑;font-weight:bold;font-size:40px;">导入导出区</div>
+           </div>
+           <div class='leadingOut-leadingOut'>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">当前方案</div>
+                    <textarea type="textarea" ref='currentPlan' id='currentPlan'></textarea>
+                </div>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">导出</div>
+                    <div style="backgroundColor:#ffffff;width:15px;height:15px;backgroundImage:url(../static/readmeImage/Example3.png)" @click="leadingOut()"></div>
+                </div>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">导入</div>
+                    <div style="backgroundColor:#ffffff;width:15px;height:15px;backgroundImage:url(../static/readmeImage/Example2.png)" @click="leadingIn()"></div>
+                </div>
            </div>
        </div>       
     <div class="keyboard" style="border:4px solid">
@@ -205,17 +224,21 @@
 </template>
 
 <script>
+import {Base64} from "../../static/js/Base64Tool.js"
+import {rgb2Hex} from "../../static/js/Color.js"
+
 export default {
   name: 'HelloWorld',
   data () {
     return {
       color: '#FF6600',
+      base64Tool:new Base64(),
       allColor:'#FF0000',
       keyBoardData:[],
       defaultPlans:{
-          Chernobyl:[{"id":1,"originColor":"#ff6600","currentColor":"#437683"},{"id":2,"originColor":"#ffffff","currentColor":"#437683"},{"id":3,"originColor":"#ffffff","currentColor":"#437683"},{"id":4,"originColor":"#ffffff","currentColor":"#adadad"},{"id":5,"originColor":"#ffffff","currentColor":"#adadad"},{"id":6,"originColor":"#ffffff","currentColor":"#adadad"},{"id":7,"originColor":"#ffffff","currentColor":"#adadad"},{"id":8,"originColor":"#ffffff","currentColor":"#adadad"},{"id":9,"originColor":"#ffffff","currentColor":"#adadad"},{"id":10,"originColor":"#ffffff","currentColor":"#adadad"},{"id":11,"originColor":"#ffffff","currentColor":"#adadad"},{"id":12,"originColor":"#ffffff","currentColor":"#adadad"},{"id":13,"originColor":"#ffffff","currentColor":"#adadad"},{"id":14,"originColor":"#ffffff","currentColor":"#adadad"},{"id":15,"originColor":"#ffffff","currentColor":"#adadad"},{"id":16,"originColor":"#ffffff","currentColor":"#adadad"},{"id":17,"originColor":"#ffffff","currentColor":"#437683"},{"id":18,"originColor":"#ffffff","currentColor":"#437683"},{"id":19,"originColor":"#ffffff","currentColor":"#adadad"},{"id":20,"originColor":"#ffffff","currentColor":"#adadad"},{"id":21,"originColor":"#ffffff","currentColor":"#adadad"},{"id":22,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":23,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":24,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":25,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":26,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":27,"originColor":"#ffffff","currentColor":"#adadad"},{"id":28,"originColor":"#ffffff","currentColor":"#adadad"},{"id":29,"originColor":"#ffffff","currentColor":"#adadad"},{"id":30,"originColor":"#ffffff","currentColor":"#437683"},{"id":31,"originColor":"#ffffff","currentColor":"#adadad"},{"id":32,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":33,"originColor":"#ffffff","currentColor":"#adadad"},{"id":34,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":35,"originColor":"#ffffff","currentColor":"#adadad"},{"id":36,"originColor":"#ffffff","currentColor":"#adadad"},{"id":37,"originColor":"#ffffff","currentColor":"#adadad"},{"id":38,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":39,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":40,"originColor":"#ffffff","currentColor":"#437683"},{"id":41,"originColor":"#ffffff","currentColor":"#437683"},{"id":42,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":43,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":44,"originColor":"#ffffff","currentColor":"#adadad"},{"id":45,"originColor":"#ffffff","currentColor":"#adadad"},{"id":46,"originColor":"#ffffff","currentColor":"#adadad"},{"id":47,"originColor":"#ffffff","currentColor":"#adadad"},{"id":48,"originColor":"#ffffff","currentColor":"#adadad"},{"id":49,"originColor":"#ffffff","currentColor":"#adadad"},{"id":50,"originColor":"#ffffff","currentColor":"#adadad"},{"id":51,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":52,"originColor":"#ffffff","currentColor":"#adadad"},{"id":53,"originColor":"#ffffff","currentColor":"#adadad"},{"id":54,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":55,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":56,"originColor":"#ffffff","currentColor":"#437683"},{"id":57,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":58,"originColor":"#ffffff","currentColor":"#437683"},{"id":59,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":60,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":61,"originColor":"#ffffff","currentColor":"#adadad"},{"id":62,"originColor":"#ffffff","currentColor":"#adadad"},{"id":63,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":64,"originColor":"#ffffff","currentColor":"#437683"},{"id":65,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":66,"originColor":"#ffffff","currentColor":"#adadad"},{"id":67,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":68,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":69,"originColor":"#ffffff","currentColor":"#437683"},{"id":70,"originColor":"#ffffff","currentColor":"#437683"},{"id":71,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":72,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":73,"originColor":"#ffffff","currentColor":"#adadad"},{"id":74,"originColor":"#ffffff","currentColor":"#adadad"},{"id":75,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":76,"originColor":"#ffffff","currentColor":"#437683"},{"id":77,"originColor":"#ffffff","currentColor":"#437683"},{"id":78,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":79,"originColor":"#ffffff","currentColor":"#adadad"},{"id":80,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":81,"originColor":"#ffffff","currentColor":"#adadad"},{"id":82,"originColor":"#ffffff","currentColor":"#adadad"},{"id":83,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":84,"originColor":"#ffffff","currentColor":"#437683"},{"id":85,"originColor":"#ffffff","currentColor":"#437683"},{"id":86,"originColor":"#ffffff","currentColor":"#437683"},{"id":87,"originColor":"#ffffff","currentColor":"#437683"}],
-          Miami:[{"id":1,"originColor":"#ff6600","currentColor":"#ff1e02"},{"id":2,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":3,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":4,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":5,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":6,"originColor":"#ffffff","currentColor":"#00afee"},{"id":7,"originColor":"#ffffff","currentColor":"#00afee"},{"id":8,"originColor":"#ffffff","currentColor":"#00afee"},{"id":9,"originColor":"#ffffff","currentColor":"#00afee"},{"id":10,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":11,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":12,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":13,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":14,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":15,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":16,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":17,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":18,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":19,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":20,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":21,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":22,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":23,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":24,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":25,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":26,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":27,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":28,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":29,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":30,"originColor":"#ffffff","currentColor":"#00afee"},{"id":31,"originColor":"#ffffff","currentColor":"#00afee"},{"id":32,"originColor":"#ffffff","currentColor":"#00afee"},{"id":33,"originColor":"#ffffff","currentColor":"#00afee"},{"id":34,"originColor":"#ffffff","currentColor":"#00afee"},{"id":35,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":36,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":37,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":38,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":39,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":40,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":41,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":42,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":43,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":44,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":45,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":46,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":47,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":48,"originColor":"#ffffff","currentColor":"#00afee"},{"id":49,"originColor":"#ffffff","currentColor":"#00afee"},{"id":50,"originColor":"#ffffff","currentColor":"#00afee"},{"id":51,"originColor":"#ffffff","currentColor":"#00afee"},{"id":52,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":53,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":54,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":55,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":56,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":57,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":58,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":59,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":60,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":61,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":62,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":63,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":64,"originColor":"#ffffff","currentColor":"#00afee"},{"id":65,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":66,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":67,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":68,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":69,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":70,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":71,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":72,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":73,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":74,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":75,"originColor":"#ffffff","currentColor":"#00afee"},{"id":76,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":77,"originColor":"#ffffff","currentColor":"#00afee"},{"id":78,"originColor":"#ffffff","currentColor":"#00afee"},{"id":79,"originColor":"#ffffff","currentColor":"#00afee"},{"id":80,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":81,"originColor":"#ffffff","currentColor":"#00afee"},{"id":82,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":83,"originColor":"#ffffff","currentColor":"#00afee"},{"id":84,"originColor":"#ffffff","currentColor":"#00afee"},{"id":85,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":86,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":87,"originColor":"#ffffff","currentColor":"#ff1e02"}],
-          Nuclear:[{"id":1,"originColor":"#ff6600","currentColor":"#c4c4c4"},{"id":2,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":3,"originColor":"#ffffff","currentColor":"rgb(255, 123, 58)"},{"id":4,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":5,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":6,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":7,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":8,"originColor":"#ffffff","currentColor":"#8b9a73"},{"id":9,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":10,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":11,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":12,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":13,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":14,"originColor":"#ffffff","currentColor":"rgb(255, 123, 58)"},{"id":15,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":16,"originColor":"#ffffff","currentColor":"rgb(255, 123, 58)"},{"id":17,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":18,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":19,"originColor":"#ffffff","currentColor":"rgb(127, 91, 140)"},{"id":20,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":21,"originColor":"#ffffff","currentColor":"rgb(255, 123, 58)"},{"id":22,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":23,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":24,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":25,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":26,"originColor":"#ffffff","currentColor":"#8b9a73"},{"id":27,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":28,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":29,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":30,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":31,"originColor":"#ffffff","currentColor":"#0071be"},{"id":32,"originColor":"#ffffff","currentColor":"#0071be"},{"id":33,"originColor":"#ffffff","currentColor":"#0071be"},{"id":34,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":35,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":36,"originColor":"#ffffff","currentColor":"rgb(127, 91, 140)"},{"id":37,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":38,"originColor":"#ffffff","currentColor":"rgb(255, 123, 58)"},{"id":39,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":40,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":41,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":42,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":43,"originColor":"#ffffff","currentColor":"#8b9a73"},{"id":44,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":45,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":46,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":47,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":48,"originColor":"#ffffff","currentColor":"#0071be"},{"id":49,"originColor":"#ffffff","currentColor":"#0071be"},{"id":50,"originColor":"#ffffff","currentColor":"#0071be"},{"id":51,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":52,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":53,"originColor":"#ffffff","currentColor":"rgb(127, 91, 140)"},{"id":54,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":55,"originColor":"#ffffff","currentColor":"rgb(255, 123, 58)"},{"id":56,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":57,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":58,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":59,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":60,"originColor":"#ffffff","currentColor":"#8b9a73"},{"id":61,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":62,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":63,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":64,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":65,"originColor":"#ffffff","currentColor":"rgb(127, 91, 140)"},{"id":66,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":67,"originColor":"#ffffff","currentColor":"rgb(255, 123, 58)"},{"id":68,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":69,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":70,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":71,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":72,"originColor":"#ffffff","currentColor":"#8b9a73"},{"id":73,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":74,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":75,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":76,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":77,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":78,"originColor":"#ffffff","currentColor":"rgb(127, 91, 140)"},{"id":79,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":80,"originColor":"#ffffff","currentColor":"#8b9a73"},{"id":81,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":82,"originColor":"#ffffff","currentColor":"#ffffff"},{"id":83,"originColor":"#ffffff","currentColor":"#c4c4c4"},{"id":84,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":85,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":86,"originColor":"#ffffff","currentColor":"#ff1e02"},{"id":87,"originColor":"#ffffff","currentColor":"#ff1e02"}],
+          Chernobyl:'WyIjNDM3NjgzIiwiIzQzNzY4MyIsIiM0Mzc2ODMiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiNhZGFkYWQiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiNhZGFkYWQiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiNhZGFkYWQiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiNhZGFkYWQiLCIjYWRhZGFkIiwiIzQzNzY4MyIsIiM0Mzc2ODMiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiNhZGFkYWQiLCIjZmZmZmZmIiwiI2ZmMWUwMiIsIiNmZjFlMDIiLCIjZmYxZTAyIiwiI2ZmZmZmZiIsIiNhZGFkYWQiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiM0Mzc2ODMiLCIjYWRhZGFkIiwiI2ZmMWUwMiIsIiNhZGFkYWQiLCIjZmZmZmZmIiwiI2FkYWRhZCIsIiNhZGFkYWQiLCIjYWRhZGFkIiwiI2ZmZmZmZiIsIiNmZjFlMDIiLCIjNDM3NjgzIiwiIzQzNzY4MyIsIiNmZjFlMDIiLCIjZmZmZmZmIiwiI2FkYWRhZCIsIiNhZGFkYWQiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiNhZGFkYWQiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiNmZmZmZmYiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiNmZmZmZmYiLCIjZmYxZTAyIiwiIzQzNzY4MyIsIiNmZjFlMDIiLCIjNDM3NjgzIiwiI2ZmMWUwMiIsIiNmZmZmZmYiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiNmZjFlMDIiLCIjNDM3NjgzIiwiI2ZmZmZmZiIsIiNhZGFkYWQiLCIjZmZmZmZmIiwiI2ZmMWUwMiIsIiM0Mzc2ODMiLCIjNDM3NjgzIiwiI2ZmMWUwMiIsIiNmZmZmZmYiLCIjYWRhZGFkIiwiI2FkYWRhZCIsIiNmZmZmZmYiLCIjNDM3NjgzIiwiIzQzNzY4MyIsIiNmZmZmZmYiLCIjYWRhZGFkIiwiI2ZmMWUwMiIsIiNhZGFkYWQiLCIjYWRhZGFkIiwiI2ZmZmZmZiIsIiM0Mzc2ODMiLCIjNDM3NjgzIiwiIzQzNzY4MyIsIiM0Mzc2ODMiXQ==',
+          Miami:    'WyIjZmYxZTAyIiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiMwMGFmZWUiLCIjMDBhZmVlIiwiIzAwYWZlZSIsIiMwMGFmZWUiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiMwMGFmZWUiLCIjMDBhZmVlIiwiIzAwYWZlZSIsIiMwMGFmZWUiLCIjMDBhZmVlIiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiMwMGFmZWUiLCIjMDBhZmVlIiwiIzAwYWZlZSIsIiMwMGFmZWUiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNmZjFlMDIiLCIjMDBhZmVlIiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiNjNGM0YzQiLCIjYzRjNGM0IiwiI2M0YzRjNCIsIiMwMGFmZWUiLCIjZmYxZTAyIiwiIzAwYWZlZSIsIiMwMGFmZWUiLCIjMDBhZmVlIiwiI2ZmZmZmZiIsIiMwMGFmZWUiLCIjYzRjNGM0IiwiIzAwYWZlZSIsIiMwMGFmZWUiLCIjZmYxZTAyIiwiI2ZmMWUwMiIsIiNmZjFlMDIiXQ==',
+          Beach:  'WyIjNjlDOUI4IiwiI2ZmZmZmZiIsIiM2OUM5QjgiLCIjZmZmZmZmIiwiIzY5QzlCOCIsIiNmZmZmZmYiLCIjNjlDOUI4IiwiI0VDQUQ1NSIsIiM2OUM5QjgiLCIjRUNBRDU1IiwiI0VDQUQ1NSIsIiNFQ0FENTUiLCIjRUNBRDU1IiwiI0VDQUQ1NSIsIiNFQ0FENTUiLCIjRUNBRDU1IiwiI2ZmZmZmZiIsIiNmZmZmZmYiLCIjNjlDOUI4IiwiI2ZmZmZmZiIsIiM2OUM5QjgiLCIjZmZmZmZmIiwiIzY5QzlCOCIsIiNmZmZmZmYiLCIjNjlDOUI4IiwiI0VDQUQ1NSIsIiM2OUM5QjgiLCIjRUNBRDU1IiwiI0VDQUQ1NSIsIiNFQ0FENTUiLCIjRUNBRDU1IiwiIzY5QzlCOCIsIiNFQ0FENTUiLCIjZmZmZmZmIiwiI2ZmZmZmZiIsIiM2OUM5QjgiLCIjZmZmZmZmIiwiIzY5QzlCOCIsIiNmZmZmZmYiLCIjNjlDOUI4IiwiI2ZmZmZmZiIsIiM2OUM5QjgiLCIjRUNBRDU1IiwiIzY5QzlCOCIsIiNmZmZmZmYiLCIjRUNBRDU1IiwiI0VDQUQ1NSIsIiNFQ0FENTUiLCIjRUNBRDU1IiwiI0VDQUQ1NSIsIiNmZmZmZmYiLCIjZmZmZmZmIiwiIzY5QzlCOCIsIiNmZmZmZmYiLCIjNjlDOUI4IiwiI2ZmZmZmZiIsIiM2OUM5QjgiLCIjZmZmZmZmIiwiIzY5QzlCOCIsIiNFQ0FENTUiLCIjRUNBRDU1IiwiI0VDQUQ1NSIsIiNFQ0FENTUiLCIjZmZmZmZmIiwiIzY5QzlCOCIsIiNmZmZmZmYiLCIjNjlDOUI4IiwiI2ZmZmZmZiIsIiM2OUM5QjgiLCIjZmZmZmZmIiwiIzY5QzlCOCIsIiNmZmZmZmYiLCIjRUNBRDU1IiwiI0VDQUQ1NSIsIiNFQ0FENTUiLCIjNjlDOUI4IiwiI2ZmZmZmZiIsIiM2OUM5QjgiLCIjZmZmZmZmIiwiI0VDQUQ1NSIsIiNFQ0FENTUiLCIjRUNBRDU1IiwiI2ZmZmZmZiIsIiNFQ0FENTUiLCIjNjlDOUI4IiwiI0VDQUQ1NSIsIiM2OUM5QjgiXQ==',
       }
     }
   },
@@ -230,6 +253,12 @@ export default {
       }  
   },
   methods:{
+      copy(){
+          let e = document.getElementById("currentPlan");
+          e.select(); // 选择对象
+          document.execCommand("Copy"); // 执行浏览器复制命令
+          alert('导出并复制成功')
+      },
       setColor(hex){
           for(let i=0;i<=this.keyBoardData.length-1;i++){
               this.$refs[this.keyBoardData[i].id].style.backgroundColor = hex
@@ -237,7 +266,7 @@ export default {
           }
       },    
       getColor(e){
-          this.color = e.srcElement.style.backgroundColor
+          this.color = rgb2Hex(e.srcElement.style.backgroundColor)
       },
       searchKey(id){
           let keyObject
@@ -268,19 +297,27 @@ export default {
           },100)
       },
       applyPlan(name){
-          for(let i=0;i<=this.keyBoardData.length-1;i++){
-              let keys = Object.keys(this.keyBoardData[i])
-              for(let j=0;j<=keys.length-1;j++){
-                  this.keyBoardData[i][keys[j]] = this.defaultPlans[name][i][keys[j]]
-              }
-          }
-          for(let i=0;i<=this.keyBoardData.length-1;i++){
-              this.$refs[this.keyBoardData[i].id].style.backgroundColor = this.keyBoardData[i].currentColor
-          }
+          this.$refs.currentPlan.value = this.defaultPlans[name]
+          this.leadingIn()
       },
       leadingOut(){
-          console.log(JSON.stringify(this.keyBoardData))
-          return JSON.stringify(this.keyBoardData)
+          let data = []
+          for(let i=0;i<=this.keyBoardData.length-1;i++){
+              data.push(this.keyBoardData[i].currentColor)
+          }
+          this.$refs.currentPlan.value = this.base64Tool.encode(JSON.stringify(data))
+          this.copy()
+      },
+      leadingIn(){
+          let base64 = this.$refs.currentPlan.value
+          if(base64){
+            let data = this.base64Tool.decode(base64)
+            let colors = JSON.parse(data)
+            for(let i=0;i<=colors.length-1;i++){
+                this.keyBoardData[i].currentColor = colors[i]
+                this.$refs[this.keyBoardData[i].id].style.backgroundColor = this.keyBoardData[i].currentColor
+            }
+          }
       }
   }
 }
@@ -297,7 +334,7 @@ export default {
         position: fixed;
         display: flex;
         left:21%;
-        top:10%;
+        top:2%;
         z-index: 999;
         background-color:#F5F5F5;
         flex-direction: column
@@ -317,7 +354,7 @@ export default {
         position: fixed;
         display: flex;
         left:1.5%;
-        top:10%;
+        top:2%;
         z-index: 999;
         flex-direction: column;
         background-color:#F5F5F5
@@ -338,7 +375,7 @@ export default {
         position: fixed;
         display: flex;
         left:62%;
-        top:10%;
+        top:2%;
         z-index: 999;
         background-color:#F5F5F5
     }
@@ -353,6 +390,31 @@ export default {
     .defaultPlans-Plans >div{
         margin-right: 10px;
     }
+
+
+
+    .leadingOut{
+        flex-direction: column;
+        position: fixed;
+        display: flex;
+        left:73.5%;
+        top:2%;
+        z-index: 999;
+        background-color:#F5F5F5
+    }
+    .leadingOut >div{
+        flex:2;
+        font-size: 10px;
+        margin: 10px;
+    }
+    .leadingOut-leadingOut{
+        display: flex;
+    }
+    .leadingOut-leadingOut >div{
+        margin-right: 10px;
+    }
+
+    
     .hasBorder{
         border:2px solid;
     }
