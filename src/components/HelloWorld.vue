@@ -5,43 +5,45 @@
            <div>
                 <div style="font-family:微软雅黑;font-weight:bold;font-size:40px;" @click="leadingOut">选色区</div>
            </div>
-           <div>
-               <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">ColorPicker</div>
-               <div>
-                   <colorPicker class="colorTable" v-model="color"></colorPicker>
-               </div>
-           </div>
-           <div>
-               <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#ECAD55</div>
-               <div style="backgroundColor:#ECAD55;width:15px;height:15px" @click="getColor($event)"></div>
-           </div>
-           <div>
-               <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#FF7174</div>
-               <div style="backgroundColor:#FF7174;width:15px;height:15px" @click="getColor($event)"></div>
-           </div>
-           <div>
-               <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#767B77</div>
-               <div style="backgroundColor:#767B77;width:15px;height:15px" @click="getColor($event)"></div>
-           </div>
-           <div>
-               <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#7F5B8C</div>
-               <div style="backgroundColor:#7F5B8C;width:15px;height:15px" @click="getColor($event)"></div>
-           </div>
-           <div>
-               <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#FF7B3A</div>
-               <div style="backgroundColor:#FF7B3A;width:15px;height:15px" @click="getColor($event)"></div>
-           </div>
-           <div>
-               <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#82C82E</div>
-               <div style="backgroundColor:#82C82E;width:15px;height:15px" @click="getColor($event)"></div>
-           </div>
-           <div>
-               <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#36ADBB</div>
-               <div style="backgroundColor:#36ADBB;width:15px;height:15px" @click="getColor($event)"></div>
-           </div>
-           <div>
-               <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#69C9B8</div>
-               <div style="backgroundColor:#69C9B8;width:15px;height:15px" @click="getColor($event)"></div>
+           <div class="colorBox-color">
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">ColorPicker</div>
+                    <div>
+                        <colorPicker class="colorTable" v-model="color"></colorPicker>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#ECAD55</div>
+                    <div style="backgroundColor:#ECAD55;width:15px;height:15px" @click="getColor($event)"></div>
+                </div>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#FF7174</div>
+                    <div style="backgroundColor:#FF7174;width:15px;height:15px" @click="getColor($event)"></div>
+                </div>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#767B77</div>
+                    <div style="backgroundColor:#767B77;width:15px;height:15px" @click="getColor($event)"></div>
+                </div>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#7F5B8C</div>
+                    <div style="backgroundColor:#7F5B8C;width:15px;height:15px" @click="getColor($event)"></div>
+                </div>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#FF7B3A</div>
+                    <div style="backgroundColor:#FF7B3A;width:15px;height:15px" @click="getColor($event)"></div>
+                </div>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#82C82E</div>
+                    <div style="backgroundColor:#82C82E;width:15px;height:15px" @click="getColor($event)"></div>
+                </div>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#36ADBB</div>
+                    <div style="backgroundColor:#36ADBB;width:15px;height:15px" @click="getColor($event)"></div>
+                </div>
+                <div>
+                    <div style="font-family:黑体;font-weight:bold;margin-bottom:5px;">#69C9B8</div>
+                    <div style="backgroundColor:#69C9B8;width:15px;height:15px" @click="getColor($event)"></div>
+                </div>
            </div>
        </div>
        <div class='functionBox'>
@@ -294,21 +296,27 @@ export default {
     .colorBox{
         position: fixed;
         display: flex;
-        flex-direction: column;
-        left:5%;
-        top:22%;
+        left:21%;
+        top:10%;
         z-index: 999;
-        background-color:#F5F5F5
+        background-color:#F5F5F5;
+        flex-direction: column
     }
     .colorBox >div{
         flex:1;
         font-size: 10px;
         margin: 10px;
     }
+    .colorBox-color{
+        display: flex;
+    }
+    .colorBox-color >div{
+        margin-right: 15px;
+    }
     .functionBox{
         position: fixed;
         display: flex;
-        left:14%;
+        left:1.5%;
         top:10%;
         z-index: 999;
         flex-direction: column;
@@ -329,8 +337,8 @@ export default {
         flex-direction: column;
         position: fixed;
         display: flex;
-        left:14%;
-        top:80%;
+        left:62%;
+        top:10%;
         z-index: 999;
         background-color:#F5F5F5
     }
@@ -357,7 +365,7 @@ export default {
         margin: 0 auto; /*水平居中*/
         position: relative;
         top: 50%; /*偏移*/
-        transform: translateY(50%);
+        transform: translateY(90%);
         display: flex;
         flex-direction: column;
         vertical-align: center;
@@ -375,6 +383,7 @@ export default {
         align-items: center;
         text-align: center;
         margin-bottom:20px;
+        
     }
     .top .top-1{
         flex:0.7;
@@ -403,14 +412,13 @@ export default {
         margin-right: 5px;
         padding-left: 20px;
         padding-right: 20px; 
-        min-width: 23.5px;
     }
 
     .top .top-3{
         flex:4;
         display: flex;
         justify-content: flex-start;
-        margin-left: -15px;
+        margin-left: 23px;
         max-width: 310px; 
     }
     .top-3 >div{
@@ -418,12 +426,12 @@ export default {
         margin-right: 5px;
         padding-left: 20px;
         padding-right: 20px;
-        min-width: 23.5px;
     }
     .top .top-4{
         flex:4;
         display: flex;
         justify-content: flex-start;
+        margin-left: 12px;
         max-width: 323px; 
     }
     .top-4 >div{
@@ -432,18 +440,16 @@ export default {
         padding-left: 15px;
         padding-right: 15px;
         font-size: 18px;
-        min-width: 33.5px;
         
     }
     .top-4 .top-4-1{
-        margin-left: 15.5px;
+        min-width: 29px;
+        margin-left: 25.5px;
     }
     .top .top-5{
-        flex:3;
-        margin-left: -20px;
-        max-width: 933.5px;
         display: flex;
-        justify-content: flex-start;
+        justify-content:flex-start;
+        margin-right:8.5px;
     }
     .top-5 >div{
         box-shadow: 3px 3px 0px #302e2e;
@@ -451,7 +457,7 @@ export default {
         padding-left: 20px;
         padding-right: 15px;
         font-size:18px;
-        min-width: 28.5px;
+        min-width: 28px;
     }
     .top-5 .top-5-1{
         margin-left: 35.5px;
@@ -466,7 +472,6 @@ export default {
         margin-left: 12px;
         margin-bottom:5px;
         flex:1;
-
         max-height: 80px;  
     }      
     .bottom .bottom-1{
@@ -477,19 +482,23 @@ export default {
         flex:1;
         max-width: 63.5px;
         margin-right:5px;
+
     }
     .bottom .bottom-1-14{
-        min-width: 130px;
+        min-width:130px;
     }
     .bottom .bottom-1-15{
         font-size: 16px;
         margin-left: 32px;
+
     }
     .bottom .bottom-1-16{
         font-size: 16px;
+      
     }
     .bottom .bottom-1-17{
         font-size: 16px;
+
     }
     .bottom .bottom-2{
         display: flex;
