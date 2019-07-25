@@ -18,6 +18,10 @@
 
 未作适配性开发，请在最新Chrome浏览器运行
 
+可乐可乐
+
+![image](https://github.com/MagicBYang/KeyBoardDesign87/blob/master/static/readmeImage/Example1.png)
+
 切诺贝利
 
 ![image](https://github.com/MagicBYang/KeyBoardDesign87/blob/master/static/readmeImage/Example4.png)
